@@ -80,7 +80,7 @@ function init() {
     pointLight.position.set(10, 10, 10);
     scene.add(pointLight);
 
-    camera.position.z = 25;
+    camera.position.z = 15; // Aumentar distancia de la cámara
 
     // Event listeners
     document.addEventListener('mousemove', onMouseMove);
@@ -91,7 +91,7 @@ function init() {
 
 function createNodes() {
     technologies.forEach((tech, index) => {
-        const geometry = new THREE.SphereGeometry(0.3, 32, 32);
+        const geometry = new THREE.SphereGeometry(0.4, 32, 32);
         const material = new THREE.MeshPhongMaterial({
             color: tech.color,
             transparent: true,
@@ -103,11 +103,12 @@ function createNodes() {
         // Reducir el radio de la esfera
         const phi = Math.acos(-1 + (2 * index) / technologies.length);
         const theta = Math.sqrt(technologies.length * Math.PI) * phi;
-        const radius = 10; // Reducido de 15 a 10
+        const radius = 15; // Aumentado de 10 a 15
+        const verticalSpread = 8; // Añadir distribución vertical
 
         node.position.x = radius * Math.cos(theta) * Math.sin(phi);
-        node.position.y = radius * Math.sin(theta) * Math.sin(phi);
-        node.position.z = radius * Math.cos(phi);
+        node.position.y = radius * Math.sin(theta) * Math.sin(phi) + (Math.random() - 0.5) * verticalSpread;
+        node.position.z = radius * Math.cos(phi) + (Math.random() - 0.5) * verticalSpread;
 
         // Crear sprite para el icono y tooltip
         const map = new THREE.TextureLoader().load(tech.icon);
@@ -117,7 +118,7 @@ function createNodes() {
             opacity: 1
         });
         const sprite = new THREE.Sprite(spriteMaterial);
-        sprite.scale.set(2.5, 2.5, 1);
+        sprite.scale.set(3.5, 3.5, 1); // Aumentado de 2.5 a 3.5
         node.add(sprite);
 
         // Crear tooltip
@@ -137,8 +138,8 @@ function createNodes() {
             opacity: 0
         });
         const tooltip = new THREE.Sprite(tooltipMaterial);
-        tooltip.scale.set(5, 1.2, 1);
-        tooltip.position.y = 2;
+        tooltip.scale.set(7, 1.5, 1); // Aumentado de 5 a 7
+        tooltip.position.y = 3; // Aumentado de 2 a 3
         node.add(tooltip);
         node.tooltip = tooltip;
 
@@ -277,19 +278,22 @@ function onWindowResize() {
 function animate() {
     requestAnimationFrame(animate);
 
-    // Rotación suave del grupo completo
-    nodes.rotation.y += 0.002;
-    lines.rotation.y += 0.002;
+    // Rotación más lenta para mejor visibilidad
+    nodes.rotation.y += 0.001;
+    lines.rotation.y += 0.001;
 
-    // Movimiento ondulante de los nodos
+    // Movimiento ondulante más pronunciado
     nodes.children.forEach((node, i) => {
-        const time = Date.now() * 0.001;
+        const time = Date.now() * 0.0008; // Más lento
         const offset = i * 0.5;
-        node.position.z = node.userData.originalPosition.z + Math.sin(time + offset) * 1; // Reducido de 2 a 1
+        node.position.z = node.userData.originalPosition.z + Math.sin(time + offset) * 1.5; // Más amplitud
     });
     
-    // Actualizar conexiones
-    updateConnections();
+    // Efecto de parallax más suave
+    nodes.rotation.x = mouseY * 0.1;
+    nodes.rotation.z = mouseX * 0.1;
+    lines.rotation.x = mouseY * 0.1;
+    lines.rotation.z = mouseX * 0.1;
 
     // Hacer que los tooltips siempre miren a la cámara
     nodes.children.forEach(node => {

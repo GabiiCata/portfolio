@@ -31,10 +31,13 @@
 /* Three.js container styles */
 #three-container {
     transition: all 0.3s ease;
+    min-height: 100vh;
 }
 
 @media (min-width: 768px) {
     #three-container {
-        clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+        clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+        left: 25% !important;
+        width: 75% !important;
     }
 }
