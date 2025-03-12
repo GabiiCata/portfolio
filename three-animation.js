@@ -135,29 +135,47 @@ function createNodes() {
         nodes.add(node);
     });
 
-    // Añadir detector de raycast para interacción
+    // Mejorar detector de raycast
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
+    let hoveredNode = null;
 
     document.addEventListener('mousemove', (event) => {
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        // Convertir coordenadas del mouse a espacio normalizado (-1 a +1)
+        const rect = renderer.domElement.getBoundingClientRect();
+        mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
         raycaster.setFromCamera(mouse, camera);
         const intersects = raycaster.intersectObjects(nodes.children, true);
 
-        // Resetear todos los tooltips
-        nodes.children.forEach(node => {
-            if (node.tooltip) node.tooltip.material.opacity = 0;
-        });
+        // Resetear estado previo
+        if (hoveredNode && hoveredNode.tooltip) {
+            hoveredNode.tooltip.material.opacity = 0;
+        }
 
-        // Mostrar tooltip del nodo seleccionado
+        // Actualizar nuevo estado
+        hoveredNode = null;
         if (intersects.length > 0) {
-            const selectedNode = intersects[0].object.parent;
-            if (selectedNode && selectedNode.tooltip) {
-                selectedNode.tooltip.material.opacity = 1;
+            const selected = intersects[0].object;
+            hoveredNode = selected.type === 'Sprite' ? selected.parent : selected;
+            
+            if (hoveredNode && hoveredNode.tooltip) {
+                hoveredNode.tooltip.material.opacity = 1;
+                hoveredNode.tooltip.position.y = 2;
+                // Asegurar que el tooltip siempre mire a la cámara
+                hoveredNode.tooltip.lookAt(camera.position);
             }
         }
+    });
+
+    // Añadir listener para el contenedor 3D
+    const container = document.getElementById('three-container');
+    container.addEventListener('mouseleave', () => {
+        if (hoveredNode && hoveredNode.tooltip) {
+            hoveredNode.tooltip.material.opacity = 0;
+        }
+        hoveredNode = null;
     });
 }
 

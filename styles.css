@@ -1,45 +1,3 @@
-html, body {
-    cursor: none;
-}
-
-/* Form styles */
-.form-input {
-    @apply w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors;
-}
-
-/* Skill card styles */
-.skill-card {
-    @apply bg-gray-800 p-6 rounded-xl border border-gray-700 transition-all;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-
-.skill-card:hover {
-    transform: translateY(-5px) rotateX(10deg);
-    border-color: theme('colors.blue.500');
-}
-
-/* Experience card styles */
-.experience-card {
-    @apply bg-gray-800 p-6 rounded-xl border border-gray-700 transition-all;
-    transform-style: preserve-3d;
-}
-
-.experience-card:hover {
-    transform: translateY(-5px);
-    border-color: theme('colors.blue.500');
-}
-
-/* Profile image animation */
-.profile-image {
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
 /* Custom cursor styles */
 #custom-cursor {
     width: 20px;
@@ -48,107 +6,36 @@ html, body {
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.2s ease, background 0.2s ease;
-    will-change: transform;
+    z-index: 10000;
     transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
 }
 
-/* Hover effects */
-.hover-trigger:hover ~ #custom-cursor {
-    transform: scale(1.5);
-    background: rgba(255, 255, 255, 0.5);
+/* Asegurar que el cursor del sistema esté oculto */
+* {
+    cursor: none !important;
 }
 
-/* Project card styles - updated */
-.project-card {
-    @apply bg-gray-800 rounded-xl;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* Form styles */
+.form-input {
+    @apply w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors;
 }
 
-.project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-    border-color: rgba(96, 165, 250, 0.2);
+/* Mobile blur effect for 3D animation */
+@media (max-width: 767px) {
+    .mobile-blur {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
 }
 
-.tech-item-container {
-    position: relative;
-    display: inline-block;
-}
-
-.tech-tooltip {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    padding: 4px 8px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    font-size: 12px;
-    border-radius: 4px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s;
-    white-space: nowrap;
-}
-
-.tech-item-container:hover .tech-tooltip {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
-.tech-logo {
-    filter: grayscale(1);
+/* Three.js container styles */
+#three-container {
     transition: all 0.3s ease;
 }
 
-.project-button {
-    @apply inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-all;
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
-}
-
-.project-button:hover {
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
-}
-
-.project-title {
-    background: linear-gradient(135deg, #60A5FA 0%, #7C3AED 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: gradient-shift 3s ease infinite;
-}
-
-@keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Smooth scroll behavior */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Animation classes */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Tooltip styles */
-canvas {
-    font-smooth: always;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+@media (min-width: 768px) {
+    #three-container {
+        clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+    }
 }
