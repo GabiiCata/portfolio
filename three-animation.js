@@ -5,7 +5,7 @@ const technologies = [
     // Backend & Java Ecosystem
     { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', color: 0xf89820, group: 'backend' },
     { name: 'Spring', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg', color: 0x6db33f, group: 'backend' },
-    { name: 'Hibernate', icon: 'https://hibernate.org/images/hibernate-logo.svg', color: 0xbcae79, group: 'backend' },
+    { name: 'Hibernate', icon: 'https://www.svgrepo.com/show/353874/hibernate.svg', color: 0xbcae79, group: 'backend' },
     { name: 'Maven', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/maven/maven-original.svg', color: 0xc71a36, group: 'backend' },
 
     // Containerization & Orchestration
@@ -20,7 +20,7 @@ const technologies = [
     { name: 'Redis', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg', color: 0xd82c20, group: 'database' },
 
     // Cloud & Infrastructure
-    { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg', color: 0xff9900, group: 'cloud' },
+    { name: 'AWS', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', color: 0xff9900, group: 'cloud' },
     { name: 'Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg', color: 0x0089d6, group: 'cloud' },
 
     // Testing & Quality
@@ -28,11 +28,26 @@ const technologies = [
     { name: 'SonarQube', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sonarqube/sonarqube-original.svg', color: 0x4e9bcd, group: 'testing' },
 
     // Message Brokers
-    { name: 'RabbitMQ', icon: 'https://www.rabbitmq.com/img/logo-rabbitmq.svg', color: 0xff6600, group: 'integration' },
+    { name: 'RabbitMQ', icon: 'https://www.svgrepo.com/show/303555/rabbitmq-logo.svg', color: 0xff6600, group: 'integration' },
     { name: 'Kafka', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg', color: 0x231f20, group: 'integration' },
     
     // Version Control
-    { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', color: 0xf05032, group: 'vcs' }
+    { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', color: 0xf05032, group: 'vcs' },
+    
+    // Metodologías Ágiles
+    { name: 'Agile', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/trello/trello-plain.svg', color: 0x47b4ff, group: 'methodology' },
+    { name: 'Scrum', icon: 'https://www.svgrepo.com/show/372946/scrum.svg', color: 0x3aa5dd, group: 'methodology' },
+    { name: 'Kanban', icon: 'https://www.svgrepo.com/show/373582/kanban.svg', color: 0x026aa7, group: 'methodology' },
+
+    // Cloud & Infrastructure
+    { name: 'AWS', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', color: 0xff9900, group: 'cloud' },
+
+    // Message Brokers
+    { name: 'RabbitMQ', icon: 'https://www.svgrepo.com/show/354250/rabbitmq-icon.svg', color: 0xf8dc75, group: 'integration' },
+
+    // Servidores y Lenguajes Adicionales
+    { name: 'Tomcat', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tomcat/tomcat-original.svg', color: 0xf8dc75, group: 'backend' },
+    { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg', color: 0x00599c, group: 'languages' }
 ];
 
 function init() {
@@ -209,15 +224,19 @@ function shouldConnect(tech1, tech2) {
     return sameGroup || relatedGroups;
 }
 
+// Actualizar las relaciones de grupos
 function isRelatedGroup(group1, group2) {
     const relations = {
-        'backend': ['database', 'testing', 'integration'],
-        'devops': ['cloud', 'vcs'],
+        'backend': ['database', 'testing', 'integration', 'tools'],
+        'devops': ['cloud', 'vcs', 'tools'],
         'database': ['backend', 'integration'],
         'cloud': ['devops', 'backend'],
-        'testing': ['backend', 'integration'],
+        'testing': ['backend', 'integration', 'methodology'],
         'integration': ['backend', 'database'],
-        'vcs': ['devops', 'backend']
+        'vcs': ['devops', 'backend'],
+        'methodology': ['tools', 'testing'],
+        'tools': ['methodology', 'backend', 'devops'],
+        'languages': ['backend', 'testing']
     };
     return relations[group1]?.includes(group2) || relations[group2]?.includes(group1);
 }
