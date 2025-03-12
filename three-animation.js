@@ -1,5 +1,6 @@
 let scene, camera, renderer, nodes, lines;
 let mouseX = 0, mouseY = 0;
+let stars, starsGeometry; // Add these variables
 
 const technologies = [
     // Backend & Java Ecosystem
@@ -50,6 +51,31 @@ const technologies = [
     { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg', color: 0x00599c, group: 'languages' }
 ];
 
+function createStars() {
+    starsGeometry = new THREE.BufferGeometry();
+    const vertices = [];
+    
+    for (let i = 0; i < 2000; i++) {
+        const x = (Math.random() - 0.5) * 2000;
+        const y = (Math.random() - 0.5) * 2000;
+        const z = (Math.random() - 0.5) * 2000;
+        vertices.push(x, y, z);
+    }
+    
+    starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    
+    const starsMaterial = new THREE.PointsMaterial({
+        color: 0xFFFFFF,
+        size: 1,
+        transparent: true,
+        opacity: 0.8,
+        sizeAttenuation: true
+    });
+    
+    stars = new THREE.Points(starsGeometry, starsMaterial);
+    scene.add(stars);
+}
+
 function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -80,11 +106,14 @@ function init() {
     pointLight.position.set(10, 10, 10);
     scene.add(pointLight);
 
-    camera.position.z = 15; // Aumentar distancia de la cámara
+    camera.position.z = 35; // Aumentar distancia de la cámara
 
     // Event listeners
     document.addEventListener('mousemove', onMouseMove);
     window.addEventListener('resize', onWindowResize);
+
+    // Add stars creation
+    createStars();
 
     animate();
 }
@@ -307,6 +336,18 @@ function animate() {
     nodes.rotation.z = mouseX * 0.2;
     lines.rotation.x = mouseY * 0.2;
     lines.rotation.z = mouseX * 0.2;
+
+    // Add star rotation and twinkle
+    if (stars) {
+        stars.rotation.x += 0.0001;
+        stars.rotation.y += 0.0001;
+
+        const positions = starsGeometry.attributes.position.array;
+        for (let i = 0; i < positions.length; i += 3) {
+            positions[i + 2] += (Math.random() - 0.5) * 0.1;
+        }
+        starsGeometry.attributes.position.needsUpdate = true;
+    }
 
     renderer.render(scene, camera);
 }
