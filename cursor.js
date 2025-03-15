@@ -140,13 +140,13 @@ function createExplosion(x, y) {
 // Efecto hover para elementos interactivos
 const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .experience-card');
 interactiveElements.forEach(element => {
-    element.addEventListener('mouseenter', () => {
-        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(1.5)`;
+    element.addEventListener('mouseenter', (event) => {
+        cursor.style.transform = `translate(${event.clientX}px, ${event.clientY}px) scale(1.5)`;
         cursor.classList.add('hover');
     });
     
-    element.addEventListener('mouseleave', () => {
-        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) scale(1)`;
+    element.addEventListener('mouseleave', (event) => {
+        cursor.style.transform = `translate(${event.clientX}px, ${event.clientY}px) scale(1)`;
         cursor.classList.remove('hover');
     });
 });

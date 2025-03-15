@@ -2,53 +2,55 @@ let scene, camera, renderer, nodes, lines;
 let mouseX = 0, mouseY = 0;
 let stars, starsGeometry; // Add these variables
 
-const technologies = [
+// Make technologies array globally available
+window.technologies = [
     // Backend & Java Ecosystem
     { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', color: 0xf89820, group: 'backend' },
     { name: 'Spring', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg', color: 0x6db33f, group: 'backend' },
-    { name: 'Hibernate', icon: 'https://www.svgrepo.com/show/353874/hibernate.svg', color: 0xbcae79, group: 'backend' },
+    { name: 'Hibernate', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg', color: 0xbcae79, group: 'backend' },
     { name: 'Maven', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/maven/maven-original.svg', color: 0xc71a36, group: 'backend' },
+    { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg', color: 0x00599c, group: 'backend' },
+    { name: 'RabbitMQ', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg', color: 0xf8dc75, group: 'backend' },
+    { name: 'Kafka', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg', color: 0x231f20, group: 'backend' },
+    { name: 'JUnit', icon: 'https://junit.org/junit5/assets/img/junit5-logo.png', color: 0x25a162, group: 'backend' },
+    { name: 'Mockito', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mockito/mockito-original.svg', color: 0x3a3a3a, group: 'backend' },
+    { name: 'SonarQube', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sonarqube/sonarqube-original.svg', color: 0x4e9bcd, group: 'backend' },
+    { name: 'Swagger', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg', color: 0x85ea2d, group: 'backend' },
+    { name: 'Tomcat', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tomcat/tomcat-original.svg', color: 0xf8dc75, group: 'backend' },
 
-    // Containerization & Orchestration
-    { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', color: 0x2496ed, group: 'devops' },
-    { name: 'Kubernetes', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg', color: 0x326ce5, group: 'devops' },
-    { name: 'Jenkins', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg', color: 0xd24939, group: 'devops' },
+
 
     // Databases
     { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', color: 0x336791, group: 'database' },
     { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', color: 0x00758f, group: 'database' },
     { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', color: 0x47a248, group: 'database' },
     { name: 'Redis', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg', color: 0xd82c20, group: 'database' },
+    { name: 'Oracle', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg', color: 0xf80000, group: 'database' },
+    { name: 'SQL Server', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain-wordmark.svg', color: 0xcc2927, group: 'database' },
 
-    // Cloud & Infrastructure
-    { name: 'AWS', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', color: 0xff9900, group: 'cloud' },
-    { name: 'Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg', color: 0x0089d6, group: 'cloud' },
+
+
+    // Infrastructure & Control
+    { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', color: 0xf05032, group: 'infrastructure' },
+    { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', color: 0x181717, group: 'infrastructure' },
+    { name: 'GitLab', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg', color: 0xfca326, group: 'infrastructure' },
+    { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', color: 0x2496ed, group: 'infrastructure' },
+    { name: 'Jenkins', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg', color: 0xd24939, group: 'infrastructure' },
+    { name: 'Openshift', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openshift/openshift-original.svg', color: 0x326ce5, group: 'infrastructure' },
+
 
     // Testing & Quality
-    { name: 'JUnit', icon: 'https://junit.org/junit5/assets/img/junit5-logo.png', color: 0x25a162, group: 'testing' },
-    { name: 'SonarQube', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sonarqube/sonarqube-original.svg', color: 0x4e9bcd, group: 'testing' },
 
-    // Message Brokers
-    { name: 'RabbitMQ', icon: 'https://www.svgrepo.com/show/303555/rabbitmq-logo.svg', color: 0xff6600, group: 'integration' },
-    { name: 'Kafka', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg', color: 0x231f20, group: 'integration' },
-    
-    // Version Control
-    { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', color: 0xf05032, group: 'vcs' },
-    
+
     // Metodologías Ágiles
     { name: 'Agile', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/trello/trello-plain.svg', color: 0x47b4ff, group: 'methodology' },
-    { name: 'Scrum', icon: 'https://www.svgrepo.com/show/372946/scrum.svg', color: 0x3aa5dd, group: 'methodology' },
-    { name: 'Kanban', icon: 'https://www.svgrepo.com/show/373582/kanban.svg', color: 0x026aa7, group: 'methodology' },
+    { name: 'Kanban', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg', color: 0x026aa7, group: 'methodology' },
+    { name: 'Scrum', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg', color: 0x2d8c7f, group: 'methodology' },
+    { name: 'Trello', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg', color: 0x026aa7, group: 'methodology' },
+    { name: 'Jira', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg', color: 0x0052cc, group: 'methodology' },
+    { name: 'Microsoft Teams', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoft/microsoft-original.svg', color: 0x6264a7, group: 'methodology' },
+    { name: 'Confluence', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/confluence/confluence-original.svg', color: 0x172b4d, group: 'methodology' },
 
-    // Cloud & Infrastructure
-    { name: 'AWS', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', color: 0xff9900, group: 'cloud' },
-
-    // Message Brokers
-    { name: 'RabbitMQ', icon: 'https://www.svgrepo.com/show/354250/rabbitmq-icon.svg', color: 0xf8dc75, group: 'integration' },
-
-    // Servidores y Lenguajes Adicionales
-    { name: 'Tomcat', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tomcat/tomcat-original.svg', color: 0xf8dc75, group: 'backend' },
-    { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg', color: 0x00599c, group: 'languages' }
 ];
 
 function createStars() {

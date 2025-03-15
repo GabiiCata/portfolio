@@ -124,3 +124,148 @@ body {
     transform-origin: center;
     will-change: transform, opacity;
 }
+
+/* Carousel Styles */
+.skills-carousel {
+    position: relative;
+    padding: 0 40px;
+    margin: 0 -20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.skills-track {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 0;
+    width: fit-content;
+    transition: transform 0.3s ease;
+}
+
+.skill-item {
+    flex: 0 0 200px;
+    min-width: unset;
+    padding: 15px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    transform-origin: center;
+    flex: 0 0 120px;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.skill-item img {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 12px;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 0.5rem;
+}
+
+.skill-item h4 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+}
+
+.carousel-btn {
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: rgba(59, 130, 246, 0.8);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Estilos del carrusel por grupos */
+.tech-group {
+    flex: 0 0 auto;
+    min-width: 300px;
+    margin: 0 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.group-title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #3b82f6;
+    text-transform: capitalize;
+    padding: 0 3rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #3b82f6;
+    text-transform: capitalize;
+}
+
+.group-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    padding: 10px;
+}
+
+.group-carousel {
+    margin-bottom: 3rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 1rem;
+}
+
+.carousel-row {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.75rem;
+}
+
+.group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+.tech-count {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    margin: 0 -1rem;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+}

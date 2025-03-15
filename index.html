@@ -56,11 +56,23 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 px-4">
+    <section id="skills" class="py-20 px-4 overflow-hidden">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold mb-12 text-center">Habilidades Técnicas</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Skills will be loaded dynamically -->
+            <div class="skills-carousel relative">
+                <button class="carousel-btn left-btn absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"/>
+                    </svg>
+                </button>
+                <div class="skills-track flex space-x-8 px-12 overflow-x-hidden">
+                    <!-- Skills will be loaded dynamically -->
+                </div>
+                <button class="carousel-btn right-btn absolute right-0 top-1/2 transform -translate-y-1/2 z-10">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
@@ -100,8 +112,7 @@
                 </button>
             </form>
         </div>
-        <a href="cv.pdf" 
-           class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 p-4 rounded-full shadow-lg transition-all transform hover:scale-110">
+        <a href="cv.pdf" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 p-4 rounded-full shadow-lg transition-all transform hover:scale-110">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
             </svg>
@@ -112,9 +123,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="three-animation.js"></script> <!-- Load this first to make technologies array available -->
+    <script src="carousel.js"></script>
     <script src="cursor.js"></script>
     <script src="main.js"></script>
-    <script src="three-animation.js"></script>
     <script src="github-integration.js"></script>
 </body>
 </html>
