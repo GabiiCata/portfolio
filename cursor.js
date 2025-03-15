@@ -110,15 +110,15 @@ function isColliding(rect1, rect2) {
 }
 
 function createExplosion(x, y) {
-    // Crear más partículas para una explosión más visible
-    for (let i = 0; i < 30; i++) {
+    // Más partículas y más lentas
+    for (let i = 0; i < 40; i++) {
         const particle = document.createElement('div');
         particle.className = 'explosion-particle';
         document.body.appendChild(particle);
 
         const angle = (Math.random() * 360) * (Math.PI / 180);
-        const velocity = 5 + Math.random() * 15;
-        const size = 3 + Math.random() * 5;
+        const velocity = 2 + Math.random() * 8; // Velocidad reducida
+        const size = 4 + Math.random() * 6; // Tamaño aumentado
 
         particle.style.left = `${x}px`;
         particle.style.top = `${y}px`;
@@ -131,8 +131,8 @@ function createExplosion(x, y) {
             { transform: 'translate(0, 0) scale(1)', opacity: 1 },
             { transform: `translate(${Math.cos(angle) * velocity * 50}px, ${Math.sin(angle) * velocity * 50}px) scale(0)`, opacity: 0 }
         ], {
-            duration: 1000,
-            easing: 'cubic-bezier(0, .9, .57, 1)'
+            duration: 2000, // Duración aumentada a 2 segundos
+            easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)' // Curva de animación más suave
         });
 
         animation.onfinish = () => particle.remove();
