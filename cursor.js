@@ -56,35 +56,33 @@ document.addEventListener('click', (e) => {
             
             if (spheres.length > 0) {
                 spheres.forEach(sphere => {
-                    // Obtener la posición del nodo en el espacio 3D
-                    const vector = sphere.position.clone();
+                    // Obtener la posición del nodo en el espacio 3D considerando todas las transformaciones
+                    const vector = new THREE.Vector3();
+                    vector.setFromMatrixPosition(sphere.matrixWorld);
                     vector.project(window.threeCamera);
                     
-                    // Obtener las dimensiones y posición del contenedor
                     const container = document.getElementById('three-container');
                     const containerRect = container.getBoundingClientRect();
                     
-                    // Ajustar el offset horizontal (reducido de 0.33 a 0.2)
+                    // Calcular la posición en pantalla considerando la rotación del grupo
                     const x = ((vector.x + 1) / 2) * containerRect.width + containerRect.left + (window.innerWidth * 0.2);
                     const y = ((-vector.y + 1) / 2) * containerRect.height + containerRect.top;
                     
-                    // Aumentar el radio de colisión y verificar distancia
                     const distance = Math.hypot(
                         x - (projectileRect.left + projectileRect.width/2),
                         y - (projectileRect.top + projectileRect.height/2)
                     );
                     
-                    // Radio de colisión aumentado para mejor detección
                     if (distance < 50 && sphere.visible) {
                         createExplosion(x, y);
                         sphere.visible = false;
-                        sphere.parent.remove(sphere); // Remover completamente el nodo
+                        sphere.parent.remove(sphere);
                         clearInterval(checkCollision);
                         projectile.remove();
                     }
                 });
             }
-        }, 16); // Actualizar a 60fps
+        }, 16);
 
         // Animar el proyectil
         requestAnimationFrame(() => {
