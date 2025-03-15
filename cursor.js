@@ -45,20 +45,99 @@ document.addEventListener('click', (e) => {
         projectile.style.top = (e.clientY + 15) + 'px';
 
         // Calcular la dirección del movimiento basada en el ángulo
-        const distance = 1000; // Distancia del movimiento
+        const distance = 1000;
         const targetX = Math.cos(angleRad) * distance;
         const targetY = Math.sin(angleRad) * distance;
 
-        // Animar el proyectil en la dirección de la nave
+        // Seguir la trayectoria del proyectil y verificar colisiones
+        const checkCollision = setInterval(() => {
+            const projectileRect = projectile.getBoundingClientRect();
+            const spheres = window.threejsNodes || [];
+            
+            if (spheres.length > 0) {
+                spheres.forEach(sphere => {
+                    // Obtener la posición del nodo en el espacio 3D
+                    const vector = sphere.position.clone();
+                    vector.project(window.threeCamera);
+                    
+                    // Obtener las dimensiones y posición del contenedor
+                    const container = document.getElementById('three-container');
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    // Ajustar el offset horizontal (reducido de 0.33 a 0.2)
+                    const x = ((vector.x + 1) / 2) * containerRect.width + containerRect.left + (window.innerWidth * 0.2);
+                    const y = ((-vector.y + 1) / 2) * containerRect.height + containerRect.top;
+                    
+                    // Aumentar el radio de colisión y verificar distancia
+                    const distance = Math.hypot(
+                        x - (projectileRect.left + projectileRect.width/2),
+                        y - (projectileRect.top + projectileRect.height/2)
+                    );
+                    
+                    // Radio de colisión aumentado para mejor detección
+                    if (distance < 50 && sphere.visible) {
+                        createExplosion(x, y);
+                        sphere.visible = false;
+                        sphere.parent.remove(sphere); // Remover completamente el nodo
+                        clearInterval(checkCollision);
+                        projectile.remove();
+                    }
+                });
+            }
+        }, 16); // Actualizar a 60fps
+
+        // Animar el proyectil
         requestAnimationFrame(() => {
             projectile.style.transform = `
                 translate(${targetX}px, ${targetY}px) 
                 rotate(${currentRotation}deg)
             `;
-            setTimeout(() => projectile.remove(), 500);
+            
+            // Limpiar después de la animación
+            setTimeout(() => {
+                projectile.remove();
+                clearInterval(checkCollision);
+            }, 500);
         });
     });
 });
+
+function isColliding(rect1, rect2) {
+    return !(rect1.right < rect2.left || 
+             rect1.left > rect2.right || 
+             rect1.bottom < rect2.top || 
+             rect1.top > rect2.bottom);
+}
+
+function createExplosion(x, y) {
+    // Crear más partículas para una explosión más visible
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'explosion-particle';
+        document.body.appendChild(particle);
+
+        const angle = (Math.random() * 360) * (Math.PI / 180);
+        const velocity = 5 + Math.random() * 15;
+        const size = 3 + Math.random() * 5;
+
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        // Colores más brillantes para la explosión
+        particle.style.backgroundColor = `hsl(${Math.random() * 60 + 10}, 100%, ${50 + Math.random() * 50}%)`;
+
+        const animation = particle.animate([
+            { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+            { transform: `translate(${Math.cos(angle) * velocity * 50}px, ${Math.sin(angle) * velocity * 50}px) scale(0)`, opacity: 0 }
+        ], {
+            duration: 1000,
+            easing: 'cubic-bezier(0, .9, .57, 1)'
+        });
+
+        animation.onfinish = () => particle.remove();
+    }
+}
 
 // Efecto hover para elementos interactivos
 const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .experience-card');

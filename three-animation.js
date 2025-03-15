@@ -119,6 +119,9 @@ function init() {
 }
 
 function createNodes() {
+    window.threejsNodes = []; // Array global para almacenar las referencias a los nodos
+    window.threeCamera = camera; // Hacer la cámara accesible globalmente
+
     technologies.forEach((tech, index) => {
         const geometry = new THREE.SphereGeometry(0.4, 32, 32);
         const material = new THREE.MeshPhongMaterial({
@@ -177,6 +180,7 @@ function createNodes() {
             tech,
             group: tech.group
         };
+        window.threejsNodes.push(node); // Añadir el nodo al array global
         nodes.add(node);
     });
 

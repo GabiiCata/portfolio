@@ -114,3 +114,13 @@ body {
     transform-origin: center;
     will-change: transform;
 }
+
+/* Partículas de explosión */
+.explosion-particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    border-radius: 50%;
+    transform-origin: center;
+    will-change: transform, opacity;
+}
