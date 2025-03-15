@@ -1,43 +1,115 @@
 /* Custom cursor styles */
 #custom-cursor {
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
+    width: 32px;
+    height: 32px;
     position: fixed;
     pointer-events: none;
-    z-index: 10000;
-    transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
+    z-index: 9999;
+    transition: transform 0.05s ease;
 }
 
-/* Asegurar que el cursor del sistema esté oculto */
+/* Cuerpo principal (blanco) con forma de nave */
+#custom-cursor::before {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-color: #ffffff;
+    clip-path: polygon(
+        50% 0%,   /* Punta superior */
+        65% 10%,  /* Extremo lateral derecho superior */
+        85% 40%,  /* Extremo derecho */
+        70% 50%,  /* Conexión derecha */
+        90% 80%,  /* Lado derecho de los motores */
+        80% 85%,  /* Motor derecho */
+        65% 85%,  /* Base derecha */
+        50% 100%, /* Centro base */
+        35% 85%,  /* Base izquierda */
+        20% 85%,  /* Motor izquierdo */
+        10% 80%,  /* Lado izquierdo de los motores */
+        30% 50%,  /* Conexión izquierda */
+        15% 40%,  /* Extremo izquierdo */
+        35% 10%   /* Extremo lateral izquierdo superior */
+    );
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+/* Parte central roja de la nave */
+#custom-cursor::after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 16px;
+    background-color: #ff0000;
+    clip-path: polygon(
+        50% 0%, 
+        80% 40%, 
+        50% 100%, 
+        20% 40%
+    );
+}
+
+/* Cañones rojos */
+.cannon-left, .cannon-right {
+    position: absolute;
+    background-color: #ff0000;
+    width: 4px;
+    height: 8px;
+}
+
+.cannon-left {
+    left: 5%;
+    top: 60%;
+}
+
+.cannon-right {
+    right: 5%;
+    top: 60%;
+}
+
+/* Propulsores (azul simulando fuego) */
+.thruster-left, .thruster-right {
+    position: absolute;
+    background-color: #00aaff;
+    width: 5px;
+    height: 10px;
+    bottom: -5px;
+    filter: blur(2px);
+}
+
+.thruster-left {
+    left: 30%;
+}
+
+.thruster-right {
+    right: 30%;
+}
+
+/* Efecto cuando se pasa sobre elementos interactivos */
+#custom-cursor.hover {
+    filter: brightness(1.5) drop-shadow(0 0 5px #fff);
+}
+
+/* Ocultar cursor predeterminado */
 * {
     cursor: none !important;
 }
 
-/* Form styles */
-.form-input {
-    @apply w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors;
+body {
+    cursor: none;
 }
 
-/* Mobile blur effect */
-@media (max-width: 767px) {
-    #three-container {
-        opacity: 0.6;
-    }
-}
-
-/* Three.js container styles */
-#three-container {
-    transition: all 0.3s ease;
-    min-height: 100vh;
-}
-
-@media (min-width: 768px) {
-    #three-container {
-        clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
-        left: 25% !important;
-        width: 75% !important;
-    }
+/* Proyectiles */
+.projectile {
+    position: fixed;
+    width: 4px;
+    height: 8px;
+    background-color: #ff0000;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.5s linear;
+    transform-origin: center;
 }
