@@ -112,4 +112,5 @@ body {
     z-index: 9998;
     transition: transform 0.5s linear;
     transform-origin: center;
+    will-change: transform;
 }

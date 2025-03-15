@@ -9,19 +9,30 @@ elements.forEach(className => {
 });
 
 let lastX = 0;
+let lastY = 0;
 
 document.addEventListener('mousemove', (e) => {
     const deltaX = e.clientX - lastX;
-    const rotation = deltaX * 0.5; // Ajusta la rotación basada en el movimiento horizontal
+    const deltaY = e.clientY - lastY;
     
-    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) rotate(${rotation}deg)`;
+    // Calcular el ángulo basado en la dirección del movimiento
+    let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+    // Ajustar el ángulo para que la nave apunte en la dirección del movimiento
+    angle = angle + 90; // Rotación adicional para orientar la nave correctamente
+    
+    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) rotate(${angle}deg)`;
+    
     lastX = e.clientX;
+    lastY = e.clientY;
 });
 
 // Función para crear y animar proyectiles
 document.addEventListener('click', (e) => {
     // Obtener la rotación actual de la nave
     const currentRotation = parseFloat(cursor.style.transform.match(/rotate\(([-\d.]+)deg\)/)?.[1] || 0);
+    
+    // Convertir el ángulo a radianes
+    const angleRad = (currentRotation - 90) * (Math.PI / 180);
     
     ['left', 'right'].forEach(side => {
         const projectile = document.createElement('div');
@@ -32,13 +43,18 @@ document.addEventListener('click', (e) => {
         const offset = side === 'left' ? -8 : 8;
         projectile.style.left = (e.clientX + offset) + 'px';
         projectile.style.top = (e.clientY + 15) + 'px';
-        
-        // Aplicar la misma rotación que tiene la nave
-        projectile.style.transform = `rotate(${currentRotation}deg)`;
 
-        // Animar el proyectil considerando la rotación
+        // Calcular la dirección del movimiento basada en el ángulo
+        const distance = 1000; // Distancia del movimiento
+        const targetX = Math.cos(angleRad) * distance;
+        const targetY = Math.sin(angleRad) * distance;
+
+        // Animar el proyectil en la dirección de la nave
         requestAnimationFrame(() => {
-            projectile.style.transform = `translateY(-100vh) rotate(${currentRotation}deg)`;
+            projectile.style.transform = `
+                translate(${targetX}px, ${targetY}px) 
+                rotate(${currentRotation}deg)
+            `;
             setTimeout(() => projectile.remove(), 500);
         });
     });
