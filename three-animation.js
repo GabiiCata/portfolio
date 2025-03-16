@@ -5,51 +5,52 @@ let stars, starsGeometry; // Add these variables
 // Make technologies array globally available
 window.technologies = [
     // Backend & Java Ecosystem
-    { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', color: 0xf89820, group: 'backend' },
-    { name: 'Spring', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg', color: 0x6db33f, group: 'backend' },
-    { name: 'Hibernate', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg', color: 0xbcae79, group: 'backend' },
-    { name: 'Maven', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/maven/maven-original.svg', color: 0xc71a36, group: 'backend' },
-    { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg', color: 0x00599c, group: 'backend' },
-    { name: 'RabbitMQ', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rabbitmq/rabbitmq-original.svg', color: 0xf8dc75, group: 'backend' },
-    { name: 'Kafka', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg', color: 0x231f20, group: 'backend' },
-    { name: 'JUnit', icon: 'https://junit.org/junit5/assets/img/junit5-logo.png', color: 0x25a162, group: 'backend' },
-    { name: 'Mockito', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mockito/mockito-original.svg', color: 0x3a3a3a, group: 'backend' },
-    { name: 'SonarQube', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sonarqube/sonarqube-original.svg', color: 0x4e9bcd, group: 'backend' },
-    { name: 'Swagger', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg', color: 0x85ea2d, group: 'backend' },
-    { name: 'Tomcat', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tomcat/tomcat-original.svg', color: 0xf8dc75, group: 'backend' },
-
-
+    { name: 'Java', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg', color: 0xf89820, group: 'backend' },
+    { name: 'Spring', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg', color: 0x6db33f, group: 'backend' },
+    { name: 'Hibernate', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/hibernate/hibernate-original.svg', color: 0xbcae79, group: 'backend' },
+    { name: 'Maven', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/maven/maven-original.svg', color: 0xc71a36, group: 'backend' },
+    { name: 'C++', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg', color: 0x00599c, group: 'backend' },
+    { name: 'RabbitMQ', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/rabbitmq/rabbitmq-original.svg', color: 0xf8dc75, group: 'backend' },
+    { name: 'Kafka', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/apachekafka/apachekafka-original.svg', color: 0x231f20, group: 'backend' },
+    { name: 'JUnit', icon: 'https://svgicons.com/api/ogimage/?id=26052&n=junit', color: 0x25a162, group: 'backend' },
+    { name: 'Mockito', icon: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Mockito_Logo.png', color: 0x3a3a3a, group: 'backend' },
+    { name: 'SonarQube', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/sonarqube/sonarqube-original.svg', color: 0x4e9bcd, group: 'backend' },
+    { name: 'Swagger', icon: 'https://icon.icepanel.io/Technology/svg/Swagger.svg', color: 0x85ea2d, group: 'backend' },
+    { name: 'Tomcat', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/tomcat/tomcat-original.svg', color: 0xf8dc75, group: 'backend' },
 
     // Databases
-    { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', color: 0x336791, group: 'database' },
-    { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', color: 0x00758f, group: 'database' },
-    { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', color: 0x47a248, group: 'database' },
-    { name: 'Redis', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg', color: 0xd82c20, group: 'database' },
-    { name: 'Oracle', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg', color: 0xf80000, group: 'database' },
-    { name: 'SQL Server', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain-wordmark.svg', color: 0xcc2927, group: 'database' },
-
-
+    { name: 'PostgreSQL', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg', color: 0x336791, group: 'database' },
+    { name: 'MySQL', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg', color: 0x00758f, group: 'database' },
+    { name: 'Oracle', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/oracle/oracle-original.svg', color: 0xf80000, group: 'database' },
+    { name: 'SQL Server', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/microsoftsqlserver/microsoftsqlserver-plain.svg', color: 0xcc2927, group: 'database' },
 
     // Infrastructure & Control
-    { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', color: 0xf05032, group: 'infrastructure' },
-    { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', color: 0x181717, group: 'infrastructure' },
-    { name: 'GitLab', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg', color: 0xfca326, group: 'infrastructure' },
-    { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', color: 0x2496ed, group: 'infrastructure' },
-    { name: 'Jenkins', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg', color: 0xd24939, group: 'infrastructure' },
-    { name: 'Openshift', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openshift/openshift-original.svg', color: 0x326ce5, group: 'infrastructure' },
+    { name: 'Git', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg', color: 0xf05032, group: 'infrastructure' },
+    { name: 'GitHub', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg', color: 0x181717, group: 'infrastructure' },
+    { name: 'GitLab', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/gitlab/gitlab-original.svg', color: 0xfca326, group: 'infrastructure' },
+    { name: 'Docker', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg', color: 0x2496ed, group: 'infrastructure' },
+    { name: 'Jenkins', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/jenkins/jenkins-original.svg', color: 0xd24939, group: 'infrastructure' },
+    { name: 'OpenShift', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/redhat/redhat-original.svg', color: 0x326ce5, group: 'infrastructure' },
+    { name: 'Bitbucket', icon: 'https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/bitbucket-icon.png', color: 0xfca326, group: 'infrastructure' },
 
 
-    // Testing & Quality
 
 
     // Metodologías Ágiles
-    { name: 'Agile', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/trello/trello-plain.svg', color: 0x47b4ff, group: 'methodology' },
-    { name: 'Kanban', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg', color: 0x026aa7, group: 'methodology' },
-    { name: 'Scrum', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg', color: 0x2d8c7f, group: 'methodology' },
-    { name: 'Trello', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg', color: 0x026aa7, group: 'methodology' },
-    { name: 'Jira', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg', color: 0x0052cc, group: 'methodology' },
-    { name: 'Microsoft Teams', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoft/microsoft-original.svg', color: 0x6264a7, group: 'methodology' },
-    { name: 'Confluence', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/confluence/confluence-original.svg', color: 0x172b4d, group: 'methodology' },
+    { name: 'Agile', icon: 'https://www.reshot.com/preview-assets/icons/9B42UZ3GA7/agile-looping-arrow-9B42UZ3GA7.svg', color: 0x47b4ff, group: 'methodology' },
+    { name: 'Kanban', icon: 'https://www.svgrepo.com/show/374930/kanban.svg', color: 0x026aa7, group: 'methodology' },
+    { name: 'Scrum', icon: 'https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-scrum-ux-and-ui-icons-flaticons-lineal-color-flat-icons-2.png', color: 0x2d8c7f, group: 'methodology' },
+    { name: 'Trello', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/trello/trello-plain.svg', color: 0x026aa7, group: 'methodology' },
+    { name: 'Jira', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/jira/jira-original.svg', color: 0x0052cc, group: 'methodology' },
+    { name: 'MS Teams', icon: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg', color: 0x6264a7, group: 'methodology' },
+    { name: 'Confluence', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/confluence/confluence-original.svg', color: 0x172b4d, group: 'methodology' },
+    { name: 'Windows 11', icon: 'https://img.icons8.com/?size=100&id=TuXN3JNUBGOT&format=png&color=000000', color: 0x172b4d, group: 'methodology' },
+    { name: 'Ubuntu', icon: 'https://cdn.worldvectorlogo.com/logos/ubuntu-4.svg', color: 0x172b4d, group: 'methodology' },
+    { name: 'InteliJ', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/2048px-IntelliJ_IDEA_Icon.svg.png', color: 0x172b4d, group: 'methodology' },
+    { name: 'Postman', icon: 'https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg', color: 0x172b4d, group: 'methodology' },
+    { name: 'VS Code', icon: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg', color: 0x172b4d, group: 'methodology' },
+    { name: 'Eclipse', icon: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Eclipse-icon-logo.svg', color: 0x172b4d, group: 'methodology' },
+    
 
 ];
 

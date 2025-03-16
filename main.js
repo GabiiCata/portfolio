@@ -58,19 +58,19 @@ const skills = [
 ]; 
 
 // Load skills
-function loadSkills() {
-    const skillsContainer = document.querySelector('#skills .grid');
-    skills.forEach(skill => {
-        const card = document.createElement('div');
-        card.className = 'skill-card';
-        card.innerHTML = `
-            <div class="text-3xl mb-4">${skill.icon}</div>
-            <h3 class="text-xl font-bold">${skill.name}</h3>
-            ${skill.versions ? `<p class="text-gray-400 text-sm">${skill.versions}</p>` : ''}
-        `;
-        skillsContainer.appendChild(card);
-    });
-}
+// function loadSkills() {
+//     const skillsContainer = document.querySelector('#skills .grid');
+//     skills.forEach(skill => {
+//         const card = document.createElement('div');
+//         card.className = 'skill-card';
+//         card.innerHTML = `
+//             <div class="text-3xl mb-4">${skill.icon}</div>
+//             <h3 class="text-xl font-bold">${skill.name}</h3>
+//             ${skill.versions ? `<p class="text-gray-400 text-sm">${skill.versions}</p>` : ''}
+//         `;
+//         skillsContainer.appendChild(card);
+//     });
+// }
 
 function loadExperience() {
     const experienceContainer = document.querySelector('#experience .space-y-8');
@@ -95,15 +95,20 @@ function loadExperience() {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize typed.js
     const typed = new Typed('#typed', {
-        strings: ['Spring Boot', 'Microservices', 'Clean Code'],
+        strings: [
+            'Especializado en desarrollo backend',
+            'Experiencia en sistemas distribuidos',
+            'Apasionado por la arquitectura de software',
+            'Enfocado en soluciones escalables'
+        ],
         typeSpeed: 50,
-        backSpeed: 50,
-        loop: true,
-        backDelay: 1000
+        backSpeed: 30,
+        backDelay: 2000,
+        loop: true
     });
 
     // Load content
-    loadSkills();
+    // loadSkills();
     loadExperience();
     
     // Initialize observers after content is loaded

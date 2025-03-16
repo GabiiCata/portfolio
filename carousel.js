@@ -2,65 +2,71 @@ document.addEventListener('DOMContentLoaded', () => {
     const skillsSection = document.querySelector('.skills-carousel');
     if (!skillsSection) return;
 
-    // Agrupar tecnologías
-    const groupedTechs = {};
-    window.technologies.forEach(tech => {
-        if (!groupedTechs[tech.group]) groupedTechs[tech.group] = [];
-        groupedTechs[tech.group].push(tech);
-    });
+    const groupedTechs = window.technologies.reduce((acc, tech) => {
+        if (!acc[tech.group]) acc[tech.group] = [];
+        acc[tech.group].push(tech);
+        return acc;
+    }, {});
 
-    // Limpiar contenedor
-    skillsSection.innerHTML = '';
-
-    // Crear carrusel para cada grupo
-    Object.entries(groupedTechs).forEach(([group, techs]) => {
+    // Convertir en array para poder asignar direcciones alternadas
+    const groups = Object.entries(groupedTechs);
+    groups.forEach(([group, technologies], index) => {
         const row = document.createElement('div');
-        row.className = 'carousel-row mb-6';
-        
+        row.className = 'carousel-row';
+
         row.innerHTML = `
-            <div class="group-header">
-                <h3 class="group-title">${group.charAt(0).toUpperCase() + group.slice(1)}</h3>
-                <span class="tech-count">${techs.length} tecnologías</span>
-            </div>
+      
             <div class="carousel-wrapper">
-                <div class="carousel-track">
-                    ${techs.map(tech => `
-                        <div class="skill-item">
-                            <img src="${tech.icon}" alt="${tech.name}">
-                            <h4>${tech.name}</h4>
-                        </div>
-                    `).join('')}
-                </div>
+                <div class="carousel-track"></div>
             </div>
         `;
 
-        skillsSection.appendChild(row);
-
-        // Duplicar items para scroll infinito
         const track = row.querySelector('.carousel-track');
-        track.innerHTML += track.innerHTML;
+        const itemWidth = 132; // 100px + 32px gap
+        const screenWidth = window.innerWidth;
+        const repetitions = Math.ceil((screenWidth * 3) / (itemWidth * technologies.length));
 
-        // Configurar animación
-        let position = 0;
-        const speed = 0.5 + Math.random() * 0.5; // Velocidad aleatoria para cada fila
-        const direction = group.length % 2 === 0 ? -1 : 1; // Dirección alterna
-
-        function animate() {
-            position += speed * direction;
-            const limit = track.scrollWidth / 2;
-
-            if (Math.abs(position) >= limit) {
-                position = 0;
-            }
-            
-            track.style.transform = `translateX(${position}px)`;
-            requestAnimationFrame(animate);
+        // Duplicar elementos
+        for (let i = 0; i < repetitions; i++) {
+            technologies.forEach(tech => {
+                const item = document.createElement('div');
+                item.className = 'skill-item';
+                item.innerHTML = `
+                    <img src="${tech.icon}" alt="${tech.name}" loading="lazy">
+                    <h4>${tech.name}</h4>
+                `;
+                track.appendChild(item);
+            });
         }
 
-        // Pausar en hover
-        track.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
-        track.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+        skillsSection.appendChild(row);
 
-        animate();
+        // Configurar animación con dirección alternada
+        let currentPosition = 0;
+        const speed = 0.2; // Velocidad reducida
+        const direction = index % 2 === 0 ? 1 : -1;
+        
+        function updatePosition() {
+            if (!track.isHovered) {
+                currentPosition += speed * direction;
+                const totalWidth = technologies.length * itemWidth;
+
+                // Reset position when reaching limits
+                if (direction > 0) {
+                    if (currentPosition >= totalWidth) currentPosition = 0;
+                } else {
+                    if (currentPosition <= -totalWidth) currentPosition = 0;
+                }
+
+                track.style.transform = `translateX(${-currentPosition}px)`;
+            }
+            requestAnimationFrame(updatePosition);
+        }
+
+        track.isHovered = false;
+        track.addEventListener('mouseenter', () => track.isHovered = true);
+        track.addEventListener('mouseleave', () => track.isHovered = false);
+
+        updatePosition();
     });
 });
