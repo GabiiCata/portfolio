@@ -109,7 +109,7 @@ function init() {
     pointLight.position.set(10, 10, 10);
     scene.add(pointLight);
 
-    camera.position.z = 35; // Aumentar distancia de la cámara
+    camera.position.z = 30; // Aumentar distancia de la cámara
 
     // Event listeners
     document.addEventListener('mousemove', onMouseMove);

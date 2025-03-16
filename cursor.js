@@ -1,5 +1,12 @@
 const cursor = document.getElementById('custom-cursor');
 
+const shootSound = new Audio('sounds/laser.wav');
+const explosionSound = new Audio('sounds/explosion.ogg');
+
+// Ajustar volumen
+shootSound.volume = 0.3;
+explosionSound.volume = 0.4;
+
 // Añadir elementos para cañones y propulsores
 const elements = ['cannon-left', 'cannon-right', 'thruster-left', 'thruster-right'];
 elements.forEach(className => {
@@ -28,6 +35,9 @@ document.addEventListener('mousemove', (e) => {
 
 // Función para crear y animar proyectiles
 document.addEventListener('click', (e) => {
+    shootSound.currentTime = 0;
+    shootSound.play();
+    
     // Obtener la rotación actual de la nave
     const currentRotation = parseFloat(cursor.style.transform.match(/rotate\(([-\d.]+)deg\)/)?.[1] || 0);
     
@@ -108,6 +118,9 @@ function isColliding(rect1, rect2) {
 }
 
 function createExplosion(x, y) {
+    explosionSound.currentTime = 0;
+    explosionSound.play();
+    
     // Más partículas y más lentas
     for (let i = 0; i < 40; i++) {
         const particle = document.createElement('div');
