@@ -364,3 +364,148 @@ body {
     z-index: 1;
     pointer-events: none;
 }
+
+/* Experience Cards Styles */
+.experience-card {
+    background: linear-gradient(
+        to bottom right,
+        rgba(31, 41, 55, 0.9),
+        rgba(17, 24, 39, 0.95)
+    );
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.experience-card:hover {
+    background: linear-gradient(
+        to bottom right,
+        rgba(31, 41, 55, 0.95),
+        rgba(17, 24, 39, 0.98)
+    );
+    box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.2),
+        0 10px 10px -5px rgba(0, 0, 0, 0.1),
+        0 0 15px rgba(59, 130, 246, 0.1);
+}
+
+.experience-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(
+        to bottom right,
+        rgba(59, 130, 246, 0.1),
+        rgba(59, 130, 246, 0.05)
+    );
+    border-radius: inherit;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.experience-card:hover::before {
+    opacity: 1;
+}
+
+#experience {
+    position: relative;
+    background: linear-gradient(
+        to bottom,
+        rgba(17, 24, 39, 0.95),
+        rgba(17, 24, 39, 0.98)
+    );
+}
+
+.experience-year-section {
+    position: relative;
+    padding: 2rem;
+    margin-bottom: 4rem;
+}
+
+.experience-year-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4rem;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
+        rgba(59, 130, 246, 0.5),
+        rgba(59, 130, 246, 0.1)
+    );
+}
+
+.experience-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        to right,
+        rgba(31, 41, 55, 0.95),
+        rgba(17, 24, 39, 0.98)
+    );
+}
+
+.experience-card:hover {
+    transform: translateY(-8px);
+    background: linear-gradient(
+        to right,
+        rgba(31, 41, 55, 0.98),
+        rgba(17, 24, 39, 1)
+    );
+    box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.3),
+        0 10px 10px -5px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+.experience-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(59, 130, 246, 0.2),
+        transparent
+    );
+}
+
+.experience-year-section {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.experience-year-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        rgba(59, 130, 246, 0.5),
+        rgba(59, 130, 246, 0)
+    );
+}
+
+.experience-year-section:last-child::before {
+    display: none;
+}
+
+.experience-year-section h3 {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(
+        to right,
+        rgba(59, 130, 246, 0.1),
+        rgba(59, 130, 246, 0)
+    );
+    border-radius: 0.5rem;
+}
