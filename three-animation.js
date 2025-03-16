@@ -118,7 +118,73 @@ function init() {
     // Add stars creation
     createStars();
 
+    // Inicializar estrellas para la sección de habilidades
+    initSkillsStars();
+
     animate();
+}
+
+function initSkillsStars() {
+    const skillsScene = new THREE.Scene();
+    const skillsCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const skillsRenderer = new THREE.WebGLRenderer({ 
+        alpha: true,
+        antialias: true 
+    });
+
+    skillsRenderer.setSize(window.innerWidth, window.innerHeight);
+    skillsRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    document.getElementById('skills-stars-container').appendChild(skillsRenderer.domElement);
+
+    // Crear estrellas
+    const skillsStarsGeometry = new THREE.BufferGeometry();
+    const vertices = [];
+    
+    for (let i = 0; i < 5000; i++) {
+        const x = (Math.random() - 0.5) * 2000;
+        const y = (Math.random() - 0.5) * 2000;
+        const z = (Math.random() - 0.5) * 2000;
+        vertices.push(x, y, z);
+    }
+    
+    skillsStarsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    
+    const starsMaterial = new THREE.PointsMaterial({
+        color: 0xFFFFFF,
+        size: 1,
+        transparent: true,
+        opacity: 0.8,
+        sizeAttenuation: true
+    });
+    
+    const skillsStars = new THREE.Points(skillsStarsGeometry, starsMaterial);
+    skillsScene.add(skillsStars);
+
+    skillsCamera.position.z = 30;
+
+    // Animación de las estrellas
+    function animateSkillsStars() {
+        requestAnimationFrame(animateSkillsStars);
+        skillsStars.rotation.x += 0.0001;
+        skillsStars.rotation.y += 0.0001;
+
+        const positions = skillsStarsGeometry.attributes.position.array;
+        for (let i = 0; i < positions.length; i += 3) {
+            positions[i + 2] += (Math.random() - 0.5) * 0.1;
+        }
+        skillsStarsGeometry.attributes.position.needsUpdate = true;
+
+        skillsRenderer.render(skillsScene, skillsCamera);
+    }
+
+    animateSkillsStars();
+
+    // Ajustar tamaño en resize
+    window.addEventListener('resize', () => {
+        skillsCamera.aspect = window.innerWidth / window.innerHeight;
+        skillsCamera.updateProjectionMatrix();
+        skillsRenderer.setSize(window.innerWidth, window.innerHeight);
+    });
 }
 
 function createNodes() {

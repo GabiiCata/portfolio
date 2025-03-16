@@ -133,6 +133,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: visible;
+    z-index: 2;
 }
 
 .skills-track {
@@ -355,4 +356,11 @@ body {
     overflow: visible !important;
     position: relative;
     width: 100%;
+    min-height: 100vh;
+    background: transparent;
+}
+
+#skills-stars-container {
+    z-index: 1;
+    pointer-events: none;
 }
