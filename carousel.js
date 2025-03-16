@@ -69,4 +69,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updatePosition();
     });
+
+    let scrollInterval;
+    const carouselTrack = document.querySelector('.skills-track');
+
+    function startAutoScroll() {
+        let scrollPosition = 0;
+        const scrollAmount = 1;
+        const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+
+        scrollInterval = setInterval(() => {
+            scrollPosition += scrollAmount;
+            
+            // Resetear la posición cuando llegue al final
+            if (scrollPosition >= maxScroll) {
+                scrollPosition = 0;
+            }
+            
+            carouselTrack.style.transform = `translateX(-${scrollPosition}px)`;
+        }, 30);
+    }
+
+    function stopAutoScroll() {
+        clearInterval(scrollInterval);
+    }
+
+    // Event listeners para pausar/reanudar el scroll
+    carouselTrack.addEventListener('mouseenter', stopAutoScroll);
+    carouselTrack.addEventListener('mouseleave', startAutoScroll);
+
+    // Iniciar el scroll automático
+    startAutoScroll();
+
+    // Reiniciar el carrusel cuando la ventana cambie de tamaño
+    window.addEventListener('resize', () => {
+        carouselTrack.style.transform = 'translateX(0)';
+    });
 });

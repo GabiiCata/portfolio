@@ -111,4 +111,170 @@ function createProjectCard(repo) {
     return card;
 }
 
-document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
+const projects = [
+    {
+        name: "Sistema de Gestión de Pagos SUBE",
+        description: "Microservicio desarrollado con Spring Boot para gestionar las cargas virtuales de la tarjeta SUBE. Incluye integración con múltiples servicios y manejo de transacciones distribuidas.",
+        technologies: ["Java", "Spring Boot", "PostgreSQL", "Docker", "GCP"],
+        highlights: [
+            "Arquitectura hexagonal",
+            "Patrones CQRS",
+            "Tests unitarios y de integración",
+            "CI/CD con Jenkins"
+        ],
+        image: "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/spring-boot/spring-boot.png"
+    },
+    {
+        name: "CRM Claro",
+        description: "Refactorización y mantenimiento de un sistema CRM para la gestión de servicios de telefonía, internet y TV. Implementación de nuevos microservicios y mejoras de rendimiento.",
+        technologies: ["Java", "Spring", "WebSockets", "Kubernetes"],
+        highlights: [
+            "Desacoplamiento de monolito",
+            "Optimización de rendimiento",
+            "Integración con APIs externas",
+            "Monitoreo con Prometheus"
+        ],
+        image: "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png"
+    },
+    {
+        name: "Higyrus SaaS",
+        description: "Aplicación web para la gestión de inversiones desarrollada con Java y Vaadin. Implementación de arquitectura multi-tenant y contenedores Docker.",
+        technologies: ["Java", "Vaadin", "Docker", "MySQL"],
+        highlights: [
+            "Arquitectura SaaS",
+            "Multi-tenancy",
+            "Seguridad por tenant",
+            "Reportes en tiempo real"
+        ],
+        image: "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/java/java.png"
+    }
+];
+
+function loadProjects() {
+    const container = document.getElementById('github-projects');
+    
+    projects.forEach(project => {
+        const card = document.createElement('div');
+        card.className = 'project-card bg-gray-800/70 backdrop-blur-lg rounded-xl p-6 transition-all duration-300 hover:transform hover:-translate-y-2 border border-gray-700/50 flex flex-col';
+        
+        const technologies = project.technologies
+            .map(tech => `<span class="px-2 py-1 text-sm bg-blue-500/10 text-blue-400 rounded-full">${tech}</span>`)
+            .join('');
+            
+        const highlights = project.highlights
+            .map(highlight => `<li class="flex items-start mb-2">
+                <span class="text-blue-400 mr-2">▹</span>
+                ${highlight}
+            </li>`)
+            .join('');
+
+        card.innerHTML = `
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex-grow">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">${project.name}</h3>
+                    <p class="text-gray-300 text-sm mb-4">${project.description}</p>
+                </div>
+                <img src="${project.image}" alt="${project.name}" class="w-12 h-12 object-contain ml-4">
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+                ${technologies}
+            </div>
+            <div class="flex-grow">
+                <h4 class="text-sm font-semibold text-gray-300 mb-2">Aspectos Destacados:</h4>
+                <ul class="text-sm text-gray-400">
+                    ${highlights}
+                </ul>
+            </div>
+            <div class="flex justify-end mt-4">
+                <button class="px-4 py-2 text-sm bg-blue-500/10 text-blue-400 rounded-lg hover:bg-blue-500/20 transition-colors">
+                    Ver más detalles
+                </button>
+            </div>
+        `;
+        
+        container.appendChild(card);
+    });
+}
+
+const GITHUB_USERNAME = 'GabiiCata';
+const REPOS_TO_SHOW = 6; // Número de repos a mostrar
+
+async function loadGitHubProjects() {
+    const container = document.getElementById('github-projects');
+    const loader = document.querySelector('.project-loader');
+    
+    try {
+        loader?.classList.remove('hidden');
+        
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=${REPOS_TO_SHOW}`);
+        const repos = await response.json();
+
+        container.innerHTML = ''; // Limpiar contenedor
+
+        for (const repo of repos) {
+            if (!repo.fork) { // Mostrar solo repos originales, no forks
+                // Obtener lenguajes usados
+                const languagesResponse = await fetch(repo.languages_url);
+                const languages = await languagesResponse.json();
+                const mainLanguages = Object.keys(languages).slice(0, 3);
+
+                const card = document.createElement('div');
+                card.className = 'project-card fade-in bg-gray-800/70 backdrop-blur-lg rounded-xl p-6 transition-all duration-300 hover:-translate-y-2 border border-gray-700/50';
+                
+                card.innerHTML = `
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-blue-400 mb-2">
+                                    ${repo.name}
+                                </h3>
+                                <p class="text-gray-300 text-sm mb-4">
+                                    ${repo.description || 'No description available'}
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs text-gray-400">
+                                    ${repo.stargazers_count} ⭐
+                                </span>
+                                <span class="text-xs text-gray-400">
+                                    ${repo.forks_count} 🔄
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${mainLanguages.map(lang => 
+                                `<span class="px-2 py-1 text-sm bg-blue-500/10 text-blue-400 rounded-full">
+                                    ${lang}
+                                </span>`
+                            ).join('')}
+                        </div>
+                        <div class="mt-auto pt-4 flex justify-end">
+                            <a href="${repo.html_url}" 
+                               target="_blank" 
+                               class="inline-flex items-center px-4 py-2 text-sm bg-blue-500/10 text-blue-400 rounded-lg hover:bg-blue-500/20 transition-colors">
+                                Ver proyecto
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            }
+        }
+    } catch (error) {
+        console.error('Error loading GitHub projects:', error);
+        container.innerHTML = `
+            <div class="text-center text-gray-400">
+                <p>Error loading projects. Please try again later.</p>
+            </div>
+        `;
+    } finally {
+        loader?.classList.add('hidden');
+    }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', loadGitHubProjects);
