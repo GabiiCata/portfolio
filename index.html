@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Gabriel Espina, Senior Java Developer especializado en Spring Boot, microservicios, arquitecturas SaaS y desarrollo asistido por IA.">
-    <meta name="theme-color" content="#f7f8f3">
+        content="Gabriel Espina, Senior Java Developer especializado en backend Java, Spring Boot, microservicios, SaaS y productos propios.">
+    <meta name="theme-color" content="#f5efe4">
     <meta property="og:title" content="Gabriel Espina - Senior Java Developer">
     <meta property="og:description"
-        content="Backend Java, Spring Boot, microservicios, SaaS, CI/CD y flujos de desarrollo asistidos por IA.">
+        content="Backend Java, Spring Boot, microservicios, experiencia desde noviembre de 2018 y productos propios como MUR y Espina Comercial.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/gabriel-espina-profile.jpg">
+    <meta property="og:image" content="assets/gabriel-mendoza-landscape.jpg">
     <title>Gabriel Espina - Senior Java Developer</title>
+    <link rel="preload" href="assets/gabriel-mendoza-landscape.webp" as="image" type="image/webp">
     <link rel="preload" href="assets/gabriel-espina-profile.webp" as="image" type="image/webp">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -26,428 +27,216 @@
             <span>Gabriel Espina</span>
         </a>
         <nav class="nav-links" aria-label="Secciones">
-            <a href="#enfoque">Enfoque</a>
+            <a href="#educacion">Educación</a>
             <a href="#experiencia">Experiencia</a>
-            <a href="#proyecto">Proyectos</a>
-            <a href="#stack">Stack</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#proyectos">Proyectos</a>
         </nav>
+        <a class="nav-cta" href="mailto:gabyespina.ge@gmail.com">Contacto</a>
     </header>
 
     <main id="main">
         <section class="hero" id="inicio">
-            <div class="hero-visual" aria-hidden="true">
-                <picture>
-                    <source srcset="assets/gabriel-espina-profile.webp" type="image/webp">
-                    <img src="assets/gabriel-espina-profile.jpg" alt="">
-                </picture>
-            </div>
-
-            <div class="hero-content">
-                <p class="eyebrow">Senior Java Developer - Mendoza, Argentina</p>
-                <h1>Gabriel Espina</h1>
-                <p class="hero-lead">
-                    Construyo y optimizo backend Java para productos SaaS, plataformas de alta demanda y equipos que
-                    necesitan entregar con criterio técnico.
-                </p>
-                <p class="hero-copy">
-                    Trabajo en desarrollo de software desde noviembre de 2018, con Spring Boot, microservicios, datos,
-                    CI/CD y flujos AI-assisted con Codex y MCP. Uso la IA para acelerar el delivery, manteniendo
-                    revisión humana, lógica de negocio y calidad antes de producción.
-                </p>
-                <div class="hero-actions" aria-label="Acciones principales">
-                    <a class="button button-primary" href="mailto:gabyespina.ge@gmail.com">Hablemos</a>
-                    <a class="button button-secondary" href="https://www.linkedin.com/in/gabiiespina" target="_blank"
-                        rel="noreferrer">LinkedIn</a>
-                </div>
-                <dl class="hero-metrics" aria-label="Resumen profesional">
-                    <div>
-                        <dt>Desde nov. 2018</dt>
-                        <dd>desarrollo de software</dd>
-                    </div>
-                    <div>
-                        <dt>Java 8-21</dt>
-                        <dd>Spring Boot y microservicios</dd>
-                    </div>
-                    <div>
-                        <dt>AI-assisted</dt>
-                        <dd>Codex, MCP y automatización</dd>
-                    </div>
-                </dl>
-            </div>
-        </section>
-
-        <section class="section intro-band" aria-label="Resumen de valor">
-            <div class="section-grid">
-                <p class="section-kicker">Backend con foco de producto</p>
-                <div>
-                    <h2>Transformo complejidad técnica en entregas confiables.</h2>
-                    <p>
-                        Mi experiencia cruza telecomunicaciones, fintech, banca, SaaS y sistemas operativos de alto
-                        impacto. Me muevo bien entre refactorizaciones, bugs complejos, integraciones y performance
-                        cuando el negocio necesita estabilidad sin frenar la evolución del producto.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="landscape-section" aria-label="Mendoza, Argentina">
-            <picture>
+            <picture class="hero-bg" aria-hidden="true">
                 <source srcset="assets/gabriel-mendoza-landscape.webp" type="image/webp">
-                <img src="assets/gabriel-mendoza-landscape.jpg"
-                    alt="Gabriel Espina sentado frente a un lago de montaña en Mendoza" decoding="async">
+                <img src="assets/gabriel-mendoza-landscape.jpg" alt="">
             </picture>
-            <div class="landscape-caption">
-                <span>Mendoza, Argentina</span>
+            <canvas id="signal-canvas" class="signal-canvas" aria-hidden="true"></canvas>
+            <div class="hero-scrim" aria-hidden="true"></div>
+
+            <div class="hero-inner">
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">Senior Java Developer - Mendoza, Argentina</p>
+                    <h1>Gabriel Espina</h1>
+                    <p class="hero-lead">
+                        Backend Java para SaaS, microservicios y productos propios con foco en estabilidad, datos y
+                        delivery asistido por IA.
+                    </p>
+                    <div class="hero-actions" aria-label="Acciones principales">
+                        <a class="button button-primary" href="mailto:gabyespina.ge@gmail.com">Hablemos</a>
+                        <a class="button button-secondary" href="https://www.linkedin.com/in/gabiiespina"
+                            target="_blank" rel="noreferrer">LinkedIn</a>
+                    </div>
+                </div>
+
+                <aside class="hero-card reveal" aria-label="Resumen profesional">
+                    <picture class="profile-lockup">
+                        <source srcset="assets/gabriel-espina-profile.webp" type="image/webp">
+                        <img src="assets/gabriel-espina-profile.jpg" alt="Gabriel Espina">
+                    </picture>
+                    <dl>
+                        <div>
+                            <dt>Desde nov. 2018</dt>
+                            <dd>Desarrollo de software</dd>
+                        </div>
+                        <div>
+                            <dt>Java 8-21</dt>
+                            <dd>Spring Boot y microservicios</dd>
+                        </div>
+                        <div>
+                            <dt>Actualidad</dt>
+                            <dd>TrackingTime + MUR</dd>
+                        </div>
+                    </dl>
+                </aside>
             </div>
         </section>
 
-        <section class="section" id="enfoque">
-            <div class="section-heading">
-                <p class="section-kicker">Lo que hago</p>
-                <h2>Ingeniería backend para sistemas que ya están en movimiento.</h2>
+        <section class="section overview-section" aria-label="Resumen">
+            <div class="overview-grid">
+                <a class="overview-item reveal" href="#educacion">
+                    <span>01</span>
+                    <strong>Educación</strong>
+                    <small>Base técnica, programación y sistemas.</small>
+                </a>
+                <a class="overview-item reveal" href="#experiencia">
+                    <span>02</span>
+                    <strong>Experiencia</strong>
+                    <small>Backend senior en SaaS, telco, fintech y banca.</small>
+                </a>
+                <a class="overview-item reveal" href="#proyectos">
+                    <span>03</span>
+                    <strong>Proyectos</strong>
+                    <small>MUR, Espina Comercial y Tusom.</small>
+                </a>
             </div>
-            <div class="capability-grid">
-                <article class="capability-card reveal">
-                    <span class="capability-index">01</span>
-                    <h3>Backend productivo</h3>
-                    <p>
-                        Diseño y evoluciono APIs RESTful, microservicios y servicios Java con Spring Boot, cuidando
-                        mantenibilidad, boundaries y compatibilidad con sistemas existentes.
-                    </p>
+        </section>
+
+        <section class="section education-section" id="educacion">
+            <div class="section-heading reveal">
+                <p class="section-kicker">Educación</p>
+                <h2>Formación técnica desde la base.</h2>
+            </div>
+            <div class="education-grid">
+                <article class="education-item reveal">
+                    <span>2017 - 2018</span>
+                    <h3>Universidad de Belgrano</h3>
+                    <p>Technical Degree in Programming.</p>
                 </article>
-                <article class="capability-card reveal">
-                    <span class="capability-index">02</span>
-                    <h3>Performance y datos</h3>
-                    <p>
-                        Optimizo queries, modelos y flujos de persistencia en MySQL, PostgreSQL y Oracle para reducir
-                        latencia en ambientes con volumen real.
-                    </p>
+                <article class="education-item reveal">
+                    <span>2015 - 2016</span>
+                    <h3>Universidad Tecnológica Nacional</h3>
+                    <p>Ingeniería en Sistemas.</p>
                 </article>
-                <article class="capability-card reveal">
-                    <span class="capability-index">03</span>
-                    <h3>Delivery asistido por IA</h3>
-                    <p>
-                        Integro Codex, servidores MCP, Postman, Sentry y Notion para acelerar investigación, cambios de
-                        código, testing y despliegues sin delegar el criterio técnico.
-                    </p>
+                <article class="education-item reveal">
+                    <span>2008 - 2014</span>
+                    <h3>ETN3 María Sánchez de Thompson</h3>
+                    <p>Tecnicatura en Programación.</p>
                 </article>
             </div>
         </section>
 
         <section class="section experience-section" id="experiencia">
-            <div class="section-heading">
+            <div class="section-heading reveal">
                 <p class="section-kicker">Experiencia</p>
-                <h2>De soporte técnico a backend senior en productos críticos.</h2>
+                <h2>De frontend bancario a backend senior.</h2>
             </div>
 
-            <div class="timeline">
-                <article class="timeline-item reveal">
-                    <div class="timeline-meta">
-                        <span>2025 - presente</span>
-                        <strong>TrackingTime</strong>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Senior Java Developer</h3>
-                        <p>
-                            Desarrollo backend para una arquitectura SaaS de alta demanda: resolución de bugs complejos,
-                            nuevas features, optimización avanzada de queries MySQL y automatización con GitHub Actions.
-                        </p>
-                        <ul class="tag-list" aria-label="Tecnologías en TrackingTime">
-                            <li>Java</li>
-                            <li>MySQL</li>
-                            <li>Codex</li>
-                            <li>MCP</li>
-                            <li>CI/CD</li>
-                        </ul>
-                    </div>
-                </article>
+            <div class="experience-layout">
+                <div class="experience-summary reveal">
+                    <strong>7+ años</strong>
+                    <span>desde noviembre de 2018</span>
+                    <p>Java, Spring Boot, microservicios, datos, CI/CD y flujos AI-assisted.</p>
+                </div>
 
-                <article class="timeline-item reveal">
-                    <div class="timeline-meta">
-                        <span>2024 - 2025</span>
-                        <strong>CFOTech / Claro</strong>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Senior Java Developer</h3>
-                        <p>
-                            Refactorización y mantenimiento de un CRM Java 11 con Spring Boot. Integración de
-                            microservicios, websockets y servicios de notificación para desacoplar partes del monolito.
-                        </p>
-                        <ul class="tag-list" aria-label="Tecnologías en Claro">
-                            <li>Java 11</li>
-                            <li>Spring Boot</li>
-                            <li>WebSockets</li>
-                            <li>Kubernetes</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="timeline-item reveal">
-                    <div class="timeline-meta">
-                        <span>2021 - 2024</span>
-                        <strong>CFOTech / Nación Servicios</strong>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Semi-Senior Java Developer</h3>
-                        <p>
-                            Microservicios para la aplicación SUBE con Java 11/17, Spring Boot y PostgreSQL. Integración
-                            con servicios internos vía HTTP y SOAP, reglas de límites transaccionales y despliegues en
-                            GCP.
-                        </p>
-                        <ul class="tag-list" aria-label="Tecnologías en SUBE">
-                            <li>Java 17</li>
-                            <li>PostgreSQL</li>
-                            <li>SOAP</li>
-                            <li>GCP</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="timeline-item reveal">
-                    <div class="timeline-meta">
-                        <span>2018 - 2021</span>
-                        <strong>AUNE, Citi, NCR, ITR</strong>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Java, frontend e integraciones</h3>
-                        <p>
-                            Desarrollo SaaS con Java 11 y Vaadin, procesos batch Java/C++ para migración a Oracle,
-                            interfaces para ATM/ITM y mejoras UI en AngularJS para entornos bancarios.
-                        </p>
-                        <ul class="tag-list" aria-label="Tecnologías en experiencia previa">
-                            <li>Java 8/11</li>
-                            <li>Vaadin</li>
-                            <li>Docker</li>
-                            <li>Oracle</li>
-                            <li>AngularJS</li>
-                        </ul>
-                    </div>
-                </article>
+                <div class="experience-list">
+                    <details class="experience-item reveal" open>
+                        <summary>
+                            <span>2025 - presente</span>
+                            <strong>TrackingTime</strong>
+                            <em>Senior Java Developer</em>
+                        </summary>
+                        <p>SaaS de alta demanda, bugs complejos, features, MySQL, GitHub Actions, Codex y MCP.</p>
+                    </details>
+                    <details class="experience-item reveal">
+                        <summary>
+                            <span>2021 - 2025</span>
+                            <strong>CFOTech</strong>
+                            <em>Claro y Nación Servicios</em>
+                        </summary>
+                        <p>CRM Java/Spring Boot, microservicios para SUBE, PostgreSQL, SOAP/REST, GCP y Kubernetes.</p>
+                    </details>
+                    <details class="experience-item reveal">
+                        <summary>
+                            <span>2019 - 2021</span>
+                            <strong>AUNE, Citi y NCR</strong>
+                            <em>SaaS, banca e integraciones</em>
+                        </summary>
+                        <p>Vaadin, Docker, batch Java/C++, Oracle, ATM/ITM, Jira y discovery técnico con bancos.</p>
+                    </details>
+                    <details class="experience-item reveal">
+                        <summary>
+                            <span>2018 - 2019</span>
+                            <strong>ITR</strong>
+                            <em>Frontend Developer</em>
+                        </summary>
+                        <p>AngularJS para ISBAN Santander y bootcamp inicial de Java, Maven e integraciones.</p>
+                    </details>
+                </div>
             </div>
+
+            <aside class="feedback-strip reveal" aria-label="Feedback recibido">
+                <img src="assets/claro-logo.png" alt="Claro">
+                <p>Feedback Claro: responsabilidad, adaptación, aprendizaje continuo y apoyo técnico al equipo.</p>
+            </aside>
         </section>
 
-        <section class="section project-section" id="proyecto">
-            <div class="section-heading">
-                <p class="section-kicker">Proyectos propios</p>
-                <h2>Productos reales, con usuarios reales y aprendizaje de negocio.</h2>
-                <p>
-                    Además de mi experiencia laboral, construyo productos propios donde puedo validar problemas. Hoy el
-                    foco principal está en MUR, junto a Espina Comercial y aprendizajes previos como Tusom.
-                </p>
+        <section class="section projects-section" id="proyectos">
+            <div class="section-heading reveal">
+                <p class="section-kicker">Proyectos</p>
+                <h2>Productos propios con validación real.</h2>
             </div>
 
-            <article class="project-feature project-feature-main reveal">
-                <div class="mur-panel" aria-hidden="true">
-                    <div class="mur-panel-header">
-                        <img class="mur-panel-logo" src="assets/mur-logo.png" alt="">
-                        <span>Waitlist por zonas</span>
+            <div class="project-grid">
+                <article class="project-card project-card-featured reveal">
+                    <div class="project-media project-media-mur">
+                        <img src="assets/mur-logo.png" alt="MUR">
                     </div>
-                    <div class="mur-feed-card">
-                        <span>Feed hiperlocal</span>
-                        <strong>Todo lo cercano, sin ruido.</strong>
-                        <p>Alertas, mascotas, promos y preguntas del barrio en un mismo lugar.</p>
+                    <div class="project-content">
+                        <span class="project-status">Principal - 2026</span>
+                        <h3>MUR</h3>
+                        <p>Red social hiperlocal: alertas, mascotas, comercios, mapa y filtros por cercanía.</p>
+                        <a class="text-link" href="https://mur.olvidaftech.com/" target="_blank" rel="noreferrer">Ver
+                            sitio</a>
                     </div>
-                    <div class="mur-panel-grid">
-                        <div class="mur-mini-card">
-                            <span>01</span>
-                            <strong>Mapa</strong>
-                            <small>Ubicación rápida</small>
-                        </div>
-                        <div class="mur-mini-card">
-                            <span>02</span>
-                            <strong>Filtros</strong>
-                            <small>Avisos por tipo</small>
-                        </div>
-                        <div class="mur-mini-card">
-                            <span>03</span>
-                            <strong>Contexto</strong>
-                            <small>Respuestas útiles</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-copy">
-                    <div class="project-brand">
-                        <img class="project-logo project-logo-symbol project-logo-box" src="assets/mur-icon.png"
-                            alt="MUR">
-                        <span class="project-status project-status-main">Proyecto principal - 2026</span>
-                    </div>
-                    <h3>MUR</h3>
-                    <p>
-                        Red social hiperlocal para conectar a cada barrio con lo que pasa cerca: alertas, mascotas
-                        perdidas, comercios, promociones, preguntas vecinales, mapa y filtros por tipo de aviso. Está en
-                        etapa de lista de espera y apertura por zonas.
-                    </p>
-                    <ul class="tag-list" aria-label="Características de MUR">
-                        <li>Red social hiperlocal</li>
-                        <li>Feed por cercanía</li>
-                        <li>Mapa</li>
-                        <li>Filtros</li>
-                        <li>Alertas</li>
-                        <li>Comunidad</li>
-                    </ul>
-                    <a class="project-link" href="https://mur.olvidaftech.com/" target="_blank"
-                        rel="noreferrer">Ver sitio</a>
-                </div>
-            </article>
+                </article>
 
-            <article class="project-feature project-feature-current reveal">
-                <div class="commercial-panel" aria-hidden="true">
-                    <img class="commercial-logo" src="assets/espina-comercial-logo.png" alt="">
-                    <div class="commercial-card commercial-card-primary">
-                        <span>Caja rápida</span>
-                        <strong>Cierre en 1 clic</strong>
+                <article class="project-card reveal">
+                    <div class="project-media project-media-espina">
+                        <img src="assets/espina-comercial-logo.png" alt="Espina Comercial">
                     </div>
-                    <div class="commercial-card">
-                        <span>Panel online</span>
-                        <strong>Ventas, stock y reportes</strong>
-                    </div>
-                    <div class="commercial-card">
-                        <span>Implementación real</span>
-                        <strong>Kiosco Jardín 2</strong>
-                    </div>
-                </div>
-                <div class="project-copy">
-                    <div class="project-brand">
-                        <img class="project-logo project-logo-symbol" src="assets/espina-comercial-logo.png"
-                            alt="Espina Comercial">
-                        <span class="project-status">Proyecto activo - 2026</span>
-                    </div>
-                    <h3>Espina Comercial</h3>
-                    <p>
-                        Plataforma SaaS/POS para comercios que necesitan ordenar ventas, inventario, caja y reportes en
-                        un panel simple. El sistema ya se usa en Kiosco Jardín 2, en San Rafael, para registrar ventas y
-                        detectar señales operativas del negocio sin depender de planillas externas.
-                    </p>
-                    <ul class="tag-list" aria-label="Características de Espina Comercial">
-                        <li>POS</li>
-                        <li>Ventas</li>
-                        <li>Stock</li>
-                        <li>Caja</li>
-                        <li>Reportes</li>
-                        <li>SaaS</li>
-                    </ul>
-                    <div class="project-links">
-                        <a class="project-link" href="https://www.espinacomercial.com/" target="_blank"
+                    <div class="project-content">
+                        <span class="project-status">Activo - 2026</span>
+                        <h3>Espina Comercial</h3>
+                        <p>SaaS/POS para ventas, stock, caja y reportes; usado en Kiosco Jardín 2.</p>
+                        <a class="text-link" href="https://www.espinacomercial.com/" target="_blank"
                             rel="noreferrer">Ver sitio</a>
-                        <a class="project-link" href="https://kioscojardin.com.ar/" target="_blank"
-                            rel="noreferrer">Kiosco Jardín</a>
                     </div>
-                </div>
-            </article>
+                </article>
 
-            <article class="project-feature reveal">
-                <div class="project-media-grid">
-                    <picture class="project-media">
+                <article class="project-card reveal">
+                    <picture class="project-media project-photo">
                         <source srcset="assets/tusom-taninos-cordoba.webp" type="image/webp">
-                        <img src="assets/tusom-taninos-cordoba.jpg"
-                            alt="Gabriel Espina en el evento Taninos Wine Fest Córdoba durante la presentación de Tusom"
-                            decoding="async">
+                        <img src="assets/tusom-taninos-cordoba.jpg" alt="Gabriel Espina en Taninos Wine Fest Córdoba">
                     </picture>
-                    <picture class="project-media">
-                        <source srcset="assets/tusom-bianchi-training.webp" type="image/webp">
-                        <img src="assets/tusom-bianchi-training.jpg"
-                            alt="Los tres socios de Tusom en una capacitación en Bodegas Bianchi" decoding="async">
-                    </picture>
-                </div>
-                <div class="project-copy">
-                    <div class="project-brand">
-                        <img class="project-logo" src="assets/tusom-logo.png" alt="Tusom">
-                        <span class="project-status">Proyecto finalizado</span>
+                    <div class="project-content">
+                        <span class="project-status">Aprendizaje de producto</span>
+                        <h3>Tusom</h3>
+                        <p>Sommelier virtual de Mendoza; vinos, bodegas, eventos, discovery y wine boxes.</p>
+                        <a class="text-link" href="https://www.instagram.com/tusom.vinos/" target="_blank"
+                            rel="noreferrer">Ver Instagram</a>
                     </div>
-                    <h3>Primer sommelier virtual de Mendoza</h3>
-                    <p>
-                        Iniciativa digital vinculada al ecosistema de vinos y bodegas. La capacitación en Bianchi, el
-                        trabajo sobre recomendaciones y wine boxes, y el paso por Taninos sumaron validación presencial,
-                        conversación con usuarios y aprendizaje de dominio para pensar producto más allá del backend.
-                    </p>
-                    <ul class="tag-list" aria-label="Aprendizajes de Tusom">
-                        <li>Producto digital</li>
-                        <li>Vinos y bodegas</li>
-                        <li>Wine Box</li>
-                        <li>Bodegas Bianchi</li>
-                        <li>Sommelier virtual</li>
-                        <li>Discovery</li>
-                        <li>Eventos</li>
-                        <li>Córdoba</li>
-                    </ul>
-                    <a class="project-link" href="https://www.instagram.com/tusom.vinos/" target="_blank"
-                        rel="noreferrer">Ver Instagram</a>
-                </div>
-            </article>
-        </section>
-
-        <section class="section stack-section" id="stack">
-            <div class="section-heading">
-                <p class="section-kicker">Stack</p>
-                <h2>Herramientas que uso para llevar ideas a producción.</h2>
-            </div>
-            <div class="stack-grid">
-                <article class="stack-group reveal">
-                    <h3>Backend</h3>
-                    <ul>
-                        <li>Java 8, 11, 17, 21</li>
-                        <li>Spring Boot</li>
-                        <li>Microservicios</li>
-                        <li>REST, SOAP, WebClient</li>
-                        <li>Hibernate, JPA, Vaadin</li>
-                    </ul>
                 </article>
-                <article class="stack-group reveal">
-                    <h3>Data</h3>
-                    <ul>
-                        <li>MySQL</li>
-                        <li>PostgreSQL</li>
-                        <li>Oracle</li>
-                        <li>Optimización de queries</li>
-                        <li>Modelado transaccional</li>
-                    </ul>
-                </article>
-                <article class="stack-group reveal">
-                    <h3>Infra y delivery</h3>
-                    <ul>
-                        <li>Docker</li>
-                        <li>Google Cloud Platform</li>
-                        <li>GitHub Actions</li>
-                        <li>CI/CD</li>
-                        <li>Kubernetes y pods</li>
-                    </ul>
-                </article>
-                <article class="stack-group reveal">
-                    <h3>AI y workflow</h3>
-                    <ul>
-                        <li>Codex</li>
-                        <li>Model Context Protocol</li>
-                        <li>Prompt Engineering</li>
-                        <li>Postman, Sentry, Notion</li>
-                        <li>Scrum, Jira</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
-
-        <section class="section quote-section" id="feedback">
-            <div class="quote-content reveal">
-                <div class="quote-header">
-                    <p class="section-kicker">Feedback recibido</p>
-                    <img class="quote-logo" src="assets/claro-logo.png" alt="Claro">
-                </div>
-                <blockquote>
-                    "Gabriel destaca por superar responsabilidades, adaptarse a los cambios, comprender información
-                    compleja y apoyar al equipo con aprendizaje continuo y conocimiento profundo de las herramientas."
-                </blockquote>
-                <p class="quote-source">Líder de proyecto en Claro</p>
             </div>
         </section>
 
         <section class="section contact-section" id="contacto">
-            <div class="contact-content">
+            <div class="contact-panel reveal">
                 <p class="section-kicker">Contacto</p>
-                <h2>Si tu backend necesita orden, performance o evolución, conversemos.</h2>
+                <h2>Backend serio, producto claro y entrega con criterio.</h2>
                 <div class="contact-actions">
                     <a class="button button-primary" href="mailto:gabyespina.ge@gmail.com">gabyespina.ge@gmail.com</a>
                     <a class="button button-secondary" href="https://www.linkedin.com/in/gabiiespina" target="_blank"
-                        rel="noreferrer">Perfil de LinkedIn</a>
+                        rel="noreferrer">LinkedIn</a>
                 </div>
             </div>
         </section>
