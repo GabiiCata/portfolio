@@ -410,10 +410,70 @@ h3 {
     display: grid;
     grid-template-columns: 1.08fr 0.92fr;
     gap: 1rem;
+    margin-bottom: 1rem;
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: rgba(255, 255, 255, 0.76);
+}
+
+.project-feature:last-child {
+    margin-bottom: 0;
+}
+
+.project-feature-current {
+    grid-template-columns: 0.92fr 1.08fr;
+}
+
+.commercial-panel {
+    position: relative;
+    display: grid;
+    align-content: end;
+    gap: 0.8rem;
+    min-height: 390px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 22% 18%, rgba(129, 91, 245, 0.34), transparent 28%),
+        linear-gradient(135deg, #171a17, #292238 54%, #5d42d9);
+    padding: 1.2rem;
+}
+
+.commercial-logo {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 124px;
+    height: auto;
+    opacity: 0.96;
+}
+
+.commercial-card {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 360px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    padding: 0.82rem 0.92rem;
+    backdrop-filter: blur(18px);
+}
+
+.commercial-card-primary {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.commercial-card span {
+    display: block;
+    margin-bottom: 0.22rem;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.82rem;
+    font-weight: 750;
+}
+
+.commercial-card strong {
+    display: block;
+    font-size: 1rem;
 }
 
 .project-media-grid {
@@ -451,6 +511,10 @@ h3 {
     height: auto;
 }
 
+.project-logo-symbol {
+    width: 54px;
+}
+
 .project-copy p {
     color: var(--muted);
 }
@@ -475,6 +539,12 @@ h3 {
 
 .project-link:hover {
     color: var(--forest-dark);
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .capability-card p,
@@ -713,6 +783,14 @@ blockquote {
 
     .project-media-grid {
         min-height: 270px;
+    }
+
+    .commercial-panel {
+        min-height: 300px;
+    }
+
+    .commercial-logo {
+        width: 96px;
     }
 
     .project-copy {
