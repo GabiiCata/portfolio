@@ -1,63 +1,24 @@
-# Portfolio Personal - Desarrollador Java
+# Gabriel Espina - Portfolio
 
-## 📝 Descripción
-Portfolio interactivo desarrollado con tecnologías web modernas, destacando una visualización 3D de skills técnicos y una línea de tiempo interactiva para la experiencia laboral.
+Landing page profesional de Gabriel Espina, Senior Java Developer especializado en Java, Spring Boot, microservicios, SaaS, CI/CD y flujos de desarrollo asistidos por IA.
 
-## ⭐ Características Principales
+## Estructura
 
-### 🌌 Visualización 3D de Skills
-- Gráfico interactivo 3D usando Three.js
-- Nodos dinámicos representando tecnologías
-- Conexiones basadas en relaciones entre tecnologías
-- Efectos de hover y tooltips informativos
-- Fondo animado con efecto de estrellas
+- `index.html`: contenido principal y SEO básico.
+- `styles.css`: sistema visual responsive sin frameworks externos.
+- `app.js`: año dinámico del footer.
+- `assets/`: foto de perfil local en JPG y WebP.
 
-### ⏳ Timeline de Experiencia
-- Diseño de línea temporal moderna
-- Tarjetas de experiencia interactivas
-- Modales detallados con información completa
-- Efecto de parallax y animaciones suaves
-- Navegación intuitiva
+## Desarrollo local
 
-### 🎨 Diseño y UI
-- Interfaz minimalista y moderna
-- Tema oscuro con acentos en azul
-- Diseño responsive para todos los dispositivos
-- Animaciones y transiciones fluidas
-- Cursor personalizado interactivo
+Este portfolio es estático y no requiere instalación de dependencias.
 
-## 🛠️ Tecnologías Utilizadas
-- HTML5 & CSS3
-- JavaScript (ES6+)
-- Three.js para gráficos 3D
-- Tailwind CSS para estilos
-- GSAP para animaciones
+```bash
+python -m http.server 8080
+```
 
-## 🚀 Performance
-- Optimización de assets
-- Lazy loading de imágenes
-- Animaciones optimizadas
-- Código modular y mantenible
+Luego abrir `http://localhost:8080`.
 
-## 💻 Compatibilidad
-- Chrome (recomendado)
-- Firefox
-- Safari
-- Edge
+## Deploy
 
-## 📱 Responsive Design
-- Desktop (1920px+)
-- Laptop (1024px+)
-- Tablet (768px+)
-- Mobile (320px+)
-
-## 🔧 Setup Local
-1. Clonar el repositorio
-2. Abrir index.html en un servidor local
-3. No requiere instalación de dependencias adicionales
-
-## 🤝 Contribuciones
-Las contribuciones son bienvenidas. Por favor, abrir un issue primero para discutir los cambios propuestos.
-
-## 📄 Licencia
-MIT License - ver archivo LICENSE para más detalles.
+El deploy se realiza con GitHub Pages mediante `.github/workflows/static.yml`, publicando el contenido de la raíz del repositorio.
