@@ -300,6 +300,7 @@ h3 {
     width: min(100% - 32px, var(--max));
     margin: 0 auto;
     padding: 86px 0;
+    scroll-margin-top: 96px;
 }
 
 .intro-band {
@@ -461,6 +462,20 @@ h3 {
 
 .quote-content {
     padding: 16px 0;
+}
+
+.quote-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.quote-logo {
+    width: min(210px, 28vw);
+    height: auto;
+    object-fit: contain;
 }
 
 .quote-section .section-kicker {
@@ -681,6 +696,14 @@ blockquote {
 
     blockquote {
         font-size: 1.42rem;
+    }
+
+    .quote-header {
+        gap: 1rem;
+    }
+
+    .quote-logo {
+        width: 118px;
     }
 
     .site-footer {
