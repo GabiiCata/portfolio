@@ -1,0 +1,3 @@
+const fs=require('node:fs');
+const sites=[['trackingtime','https://trackingtime.co/'],['cfotech','https://www.cfotechlatam.com/'],['aune','https://aunesa.com/'],['itr','https://www.itrsa.com.ar/'],['citi','https://www.citigroup.com/'],['ncr','https://www.ncratleos.com/']];
+(async()=>{await Promise.allSettled(sites.map(async([name,url])=>{try{const r=await fetch(url,{signal:AbortSignal.timeout(20000)});const s=await r.text();fs.writeFileSync('tmp/'+name+'.html',s);const imgs=[...s.matchAll(/(?:src|data-src|content)=["']([^"']+\.(?:svg|png|jpg|jpeg|webp)[^"']*)["']/g)].map(m=>new URL(m[1].replaceAll('&amp;','&'),url).href);console.log(name,r.status,JSON.stringify([...new Set(imgs)].slice(0,35)));}catch(e){console.log(name,e.message)}}));})();
