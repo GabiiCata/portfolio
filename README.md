@@ -1,24 +1,45 @@
-# Gabriel Espina - Portfolio
+# Gabriel Espina — CV interactivo
 
-Landing page profesional de Gabriel Espina, Senior Java Developer especializado en Java, Spring Boot, microservicios, SaaS, CI/CD y flujos de desarrollo asistidos por IA.
+Portfolio estático que se recorre con scroll, sin desplegables ni contenido que requiera clics para aparecer.
 
-## Estructura
+## Contenido
 
-- `index.html`: contenido principal y SEO básico.
-- `styles.css`: sistema visual responsive sin frameworks externos.
-- `app.js`: año dinámico del footer.
-- `assets/`: foto de perfil local en JPG y WebP.
+- Presentación con foto real, Senior Java Developer y Java / Spring Boot / PostgreSQL.
+- Experiencia completa desde noviembre de 2018 y feedback de Claro.
+- Educación, proyectos propios y enlaces originales.
+- CS2, Valorant, FC26, fútbol en Mendoza y escapadas a Potrerillos y San Rafael.
+- Email y LinkedIn.
 
 ## Desarrollo local
 
-Este portfolio es estático y no requiere instalación de dependencias.
+No requiere instalar dependencias ni compilar:
 
-```bash
-python -m http.server 8080
+```sh
+node scripts/preview.mjs
 ```
 
-Luego abrir `http://localhost:8080`.
+Abrir http://127.0.0.1:8080/.
+
+## Verificación
+
+Con el servidor activo:
+
+```sh
+node scripts/verify.mjs
+```
+
+Requiere Node 22+ y Chrome. Admite `CHROME_PATH` y `PREVIEW_URL`. Verifica recorridos completos con scroll a 320, 390, 768 y 1440 px, visibilidad de la foto y contenido, enlaces de proyectos sin superposición, teclado, movimiento reducido y contenido sin JavaScript. Guarda capturas en `docs/preview-desktop.webp` y `docs/preview-mobile.webp`.
+
+## Archivos
+
+- `index.html`: contenido semántico completo.
+- `styles.css`: composición responsive, línea de tiempo y proyectos que se superponen al avanzar en escritorio.
+- `app.js`: progreso de lectura, sección activa, aparición de elementos y desplazamiento suave de la foto.
+- `assets/`: fotografías e identidades originales.
+- `docs/redesign.md`: dirección visual y verificación.
+
+El scroll es nativo. No se interceptan gestos de rueda ni se fuerza navegación horizontal. `prefers-reduced-motion` desactiva desplazamientos y apilado. Todo el CV sigue disponible sin JavaScript.
 
 ## Deploy
 
-El deploy se realiza con GitHub Pages mediante `.github/workflows/static.yml`, publicando el contenido de la raíz del repositorio.
+Se mantiene GitHub Pages mediante `.github/workflows/static.yml`, que publica la raíz del repositorio.
